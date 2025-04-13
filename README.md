@@ -20,7 +20,6 @@ A high-performance **C++ application** designed to interact with the Deribit Tes
 - [Explanation of Key Files](#explanation-of-key-files)
 - [Troubleshooting](#troubleshooting)
 - [Future Enhancements](#future-enhancements)
-- [License](#license)
 
 ---
 
@@ -204,12 +203,6 @@ Confirm that paths in `CMakeLists.txt` correctly reflect your project’s direct
 - **Advanced Order Types:** Add support for stop-loss, take-profit, and trailing stop orders.
 - **Risk Management:** Integrate features like position sizing and maximum drawdown controls.
 - **Backtesting Framework:** Incorporate historical data for strategy testing and validation.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
