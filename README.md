@@ -201,5 +201,4 @@ Confirm that paths specified in the `CMakeLists.txt` are correct and reflect you
 - **Backtesting Framework**: Incorporate historical data for strategy testing and validation.
 
 ---
-
-*Thank you for exploring the Deribit Trading System! *
+Thank you for exploring the Deribit Trading System!
