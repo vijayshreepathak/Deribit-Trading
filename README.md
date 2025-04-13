@@ -1,7 +1,7 @@
 
 # Deribit Trading System
 
-A high-performance C++ application designed to interact with the Deribit Test API for cryptocurrency trading. This project demonstrates secure API authentication, comprehensive order management, and real-time market data retrieval—all built with modern C++ standards and a modular architecture.
+A high-performance **C++ application** designed to interact with the Deribit Test API for cryptocurrency trading. This project demonstrates secure API authentication, comprehensive order management, and real-time market data retrieval—all built using modern C++ standards and a modular architecture.
 
 ---
 
@@ -29,11 +29,13 @@ A high-performance C++ application designed to interact with the Deribit Test AP
 The **Deribit Trading System** is built to:
 
 - **Securely authenticate** with the Deribit API using OAuth 2.0.
-- **Manage orders**, including placing, modifying, and canceling orders.
-- **Retrieve market data**, such as the orderbook for specific instruments.
-- **Manage dependencies** via `vcpkg` and utilize a custom PowerShell script for downloading external libraries.
+- **Manage orders** including placing, modifying, and canceling orders.
+- **Retrieve market data** such as the orderbook for specific instruments.
+- **Manage dependencies** and build the project using **CMake**.
 
-It leverages **CMake** for building, **libcurl** for HTTP communication, and **JsonCpp** for JSON parsing.
+**Key Points:**
+- **C++-only Implementation:** Every component of the system is implemented in C++.
+- **CMake-Driven Build & Dependency Management:** CMake is used not only for building the project but also for managing dependencies (e.g., libcurl and JsonCpp) via integration with `vcpkg` and custom scripts.
 
 ---
 
@@ -44,16 +46,16 @@ It leverages **CMake** for building, **libcurl** for HTTP communication, and **J
   - Uses OAuth 2.0 to securely connect to the Deribit Test API.
 - **Order Management**
   - Place buy and sell orders.
-  - Modify orders and cancel them if necessary.
+  - Modify and cancel orders.
 - **Market Data Retrieval**
   - Fetch real-time orderbook data for specified instruments.
 
 ### Technical Highlights
-- **Dependency Management**
-  - Integrated with `vcpkg` for managing external libraries (`libcurl`, `JsonCpp`).
-  - A custom PowerShell script (`download_deps.ps1`) is available to download dependencies manually if needed.
-- **Build System**
-  - Cross-platform configuration using CMake.
+- **Dependency Management and Build System**
+  - **CMake is used for building the project and managing dependencies.** All external libraries such as `libcurl` and `JsonCpp` are integrated via `vcpkg`.
+  - A custom PowerShell script (`download_deps.ps1`) is available for manual dependency management.
+- **Cross-Platform Support**
+  - The project is configured using CMake for cross-platform builds.
   - Supports custom triplets, including Address Sanitizer (`x64-windows-asan`), for enhanced debugging.
 
 ---
@@ -78,7 +80,7 @@ Deribit-Trading-System-main/
 │   ├── order.hpp
 │   └── sell_order.hpp
 ├── lib/                       # Library files (if applicable)
-├── src/                       # Source files for project modules
+├── src/                       # Source files for project modules (C++ implementation)
 │   ├── account.cpp
 │   ├── auth.cpp
 │   ├── cancel_order.cpp
@@ -87,7 +89,7 @@ Deribit-Trading-System-main/
 │   ├── order.cpp
 │   └── sell_order.cpp
 ├── vcpkg/                     # vcpkg package manager directory
-├── CMakeLists.txt             # CMake configuration file
+├── CMakeLists.txt             # CMake configuration file (build & dependency management)
 ├── download_deps.ps1          # PowerShell script to download dependencies
 └── README.md                  # Project documentation file (this file)
 ```
@@ -96,11 +98,11 @@ Deribit-Trading-System-main/
 
 ## Prerequisites
 
-- **C++ Compiler**: A modern C++17-compliant compiler (e.g., MinGW-w64 or MSVC).
-- **CMake**: Version 3.10 or higher.
-- **vcpkg**: See the [vcpkg GitHub repository](https://github.com/microsoft/vcpkg) for installation instructions.
-- **PowerShell**: Required for running the `download_deps.ps1` script.
-- **Deribit Test Account**: Register at [Deribit Test](https://test.deribit.com) to generate API credentials.
+- **C++ Compiler:** A modern C++17-compliant compiler (e.g., MinGW-w64 or MSVC).
+- **CMake:** Version 3.10 or higher.
+- **vcpkg:** For dependency management (see the [vcpkg GitHub repository](https://github.com/microsoft/vcpkg) for installation instructions).
+- **PowerShell:** Required for running the `download_deps.ps1` script.
+- **Deribit Test Account:** Register at [Deribit Test](https://test.deribit.com) to generate API credentials.
 
 ---
 
@@ -127,7 +129,7 @@ cd vcpkg
 
 ### Step 3: Configure the Project Using CMake
 
-Create a build directory from the project root and configure the project:
+Create a build directory from the project root and configure the project. **CMake is used for both building the project and managing dependencies.**
 
 ```bash
 cd path\to\Deribit-Trading-System-main
@@ -155,16 +157,19 @@ Ensure that runtime DLLs (`libcurl.dll`, `jsoncpp.dll`) are present in the execu
 
 ## Explanation of Key Files
 
-- **`CMakeLists.txt`**: Main configuration file for building the project, including paths to dependencies, source files, and linking options.
-- **`download_deps.ps1`**: A PowerShell script provided to manually download and extract dependencies (`libcurl` and `JsonCpp`) if required.
-- **Source Files (`src/`)**:
+- **`CMakeLists.txt`**
+  - The main configuration file for building the project using CMake. It handles dependency management (e.g., linking `libcurl` and `JsonCpp`).
+- **`download_deps.ps1`**
+  - A PowerShell script to manually download and extract dependencies if needed.
+- **Source Files (`src/`)**
   - **`auth.cpp`**: Implements authentication with the Deribit API.
-  - **`order.cpp`**: Contains code for placing buy orders.
-  - **`sell_order.cpp`**: Contains code for placing sell orders.
+  - **`order.cpp`**: Implements buy order placement.
+  - **`sell_order.cpp`**: Implements sell order functionality.
   - **`modify_order.cpp`**: Handles order modifications.
   - **`cancel_order.cpp`**: Implements order cancellation.
-  - **`get_orderbook.cpp`**: Retrieves and processes real-time market data.
-- **Header Files (`include/`)**: Contain declarations for the corresponding source files.
+  - **`get_orderbook.cpp`**: Fetches and processes real-time market data.
+- **Header Files (`include/`)**
+  - Provide declarations for corresponding source files.
 
 ---
 
@@ -179,7 +184,7 @@ cd vcpkg
 ```
 
 ### DLL Issues at Runtime
-If you encounter missing DLL errors, copy the DLLs from:
+If you encounter missing DLL errors, copy the required DLLs from:
 
 ```
 vcpkg/installed/x64-windows/bin/
@@ -188,17 +193,26 @@ vcpkg/installed/x64-windows/bin/
 to the same directory as your executable.
 
 ### CMake Build Errors
-Confirm that paths specified in the `CMakeLists.txt` are correct and reflect your project’s directory structure.
+Confirm that paths in `CMakeLists.txt` correctly reflect your project’s directory structure.
 
 ---
 
 ## Future Enhancements
 
-- **WebSocket Integration**: Enable real-time market data streaming.
-- **Performance Optimization**: Improve memory management and implement lock-free data structures.
-- **Advanced Order Types**: Support for stop-loss, take-profit, and trailing stop orders.
-- **Risk Management**: Integrate position sizing and maximum drawdown controls.
-- **Backtesting Framework**: Incorporate historical data for strategy testing and validation.
+- **WebSocket Integration:** Enable real-time market data streaming.
+- **Performance Optimization:** Improve memory management and implement lock-free data structures.
+- **Advanced Order Types:** Add support for stop-loss, take-profit, and trailing stop orders.
+- **Risk Management:** Integrate features like position sizing and maximum drawdown controls.
+- **Backtesting Framework:** Incorporate historical data for strategy testing and validation.
 
 ---
-Thank you for exploring the Deribit Trading System!
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+Thank you for exploring the Deribit Trading System! 
+
+All functionality is implemented entirely in C++, and the build process is managed through CMake for seamless dependency integration and platform support.
