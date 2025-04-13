@@ -1,6 +1,4 @@
-Below is a polished, comprehensive README.md file formatted for GitHub:
 
-```markdown
 # Deribit Trading System
 
 A high-performance C++ application designed to interact with the Deribit Test API for cryptocurrency trading. This project demonstrates secure API authentication, comprehensive order management, and real-time market data retrieval—all built with modern C++ standards and a modular architecture.
