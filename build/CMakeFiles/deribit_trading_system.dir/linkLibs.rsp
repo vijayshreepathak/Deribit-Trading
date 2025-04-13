@@ -1,0 +1,1 @@
+ "F:/QuantProject/Deribit-Trading-System-main/deps/curl/curl-8.6.0_3-win64-mingw/lib/libcurl.dll.a" "F:/QuantProject/Deribit-Trading-System-main/vcpkg/installed/x64-windows/lib/jsoncpp.lib" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

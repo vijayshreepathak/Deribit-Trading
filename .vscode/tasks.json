@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-o",
+                "deribit_trading",
+                "main.cpp",
+                "src/auth.cpp",
+                "src/get_orderbook.cpp",
+                "src/order.cpp",
+                "src/account.cpp",
+                "src/cancel_order.cpp", 
+                "src/modify_order.cpp",
+                "src/sell_order.cpp",
+                "-I./include",
+                "-I", "F:/curl/include",
+                "-L", "F:/curl/lib",
+                "-lcurl"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
